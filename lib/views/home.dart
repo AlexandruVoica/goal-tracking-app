@@ -17,7 +17,7 @@ class HomePageHeader extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Greeting(name: 'Alex');
+    return Greeting(name: 'Name');
   }
 
   double titleOpacity(double shrinkOffset) {
@@ -56,43 +56,51 @@ class HomeLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverPersistentHeader(
-          pinned: false,
-          floating: false,
-          delegate: HomePageHeader(
-            minExtent: 100.0,
-            maxExtent: 200.0,
-          ),
-        ),
-        SliverStaggeredGrid.count(
-          crossAxisCount: 4,
-          mainAxisSpacing: 12.0,
-          crossAxisSpacing: 12.0,
-          children: goals
-              .mapIndexed(
-                (index, goal) => new GoalItem(name: goal.name),
-              )
-              .toList(),
-          staggeredTiles: goals
-              .mapIndexed((index, goal) =>
-                  new StaggeredTile.count(2, index.isEven ? 2 : 1))
-              .toList(),
-        ),
-        SliverFillRemaining(
-          hasScrollBody: false,
-          child: Container(
-            height: 80,
-            padding: EdgeInsets.only(bottom: 25),
-            alignment: Alignment.bottomCenter,
-            child: Text(
-              'Lorem ipsum dolor sit amet.',
-              style: TextStyle(color: Colors.grey),
+    return Container(
+      child: CustomScrollView(
+        slivers: <Widget>[
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            sliver: SliverPersistentHeader(
+              pinned: false,
+              floating: false,
+              delegate: HomePageHeader(
+                minExtent: 100.0,
+                maxExtent: 200.0,
+              ),
             ),
           ),
-        ),
-      ],
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            sliver: SliverStaggeredGrid.count(
+              crossAxisCount: 4,
+              mainAxisSpacing: 12.0,
+              crossAxisSpacing: 12.0,
+              children: goals
+                  .mapIndexed(
+                    (index, goal) => new GoalItem(name: goal.name),
+                  )
+                  .toList(),
+              staggeredTiles: goals
+                  .mapIndexed((index, goal) =>
+                      new StaggeredTile.count(2, index.isEven ? 2 : 1))
+                  .toList(),
+            ),
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Container(
+              height: 80,
+              padding: EdgeInsets.only(bottom: 25),
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                'Lorem ipsum dolor sit amet.',
+                style: TextStyle(color: Colors.grey),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

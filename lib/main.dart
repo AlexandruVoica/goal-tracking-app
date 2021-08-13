@@ -41,10 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Container(
       color: Color.fromRGBO(33, 33, 37, 1.0),
-      // color: Color.fromARGB(255, 35, 32, 37),
       child: SafeArea(
         child: Container(
-          padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
           child: HomeLayout(),
         ),
       ),
